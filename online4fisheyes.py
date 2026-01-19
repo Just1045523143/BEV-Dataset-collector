@@ -13,13 +13,13 @@ import time
 import cv2
 from surroundBEV import BevGenerator, padding, BEV_HEIGHT, BEV_WIDTH
 
-try:
-    sys.path.append(glob.glob('../carla/dist/carla-*%d.%d-%s.egg' % (
-        sys.version_info.major,
-        sys.version_info.minor,
-        'win-amd64' if os.name == 'nt' else 'linux-x86_64'))[0])
-except IndexError:
-    pass
+# try:
+#     sys.path.append(glob.glob('../carla/dist/carla-*%d.%d-%s.egg' % (
+#         sys.version_info.major,
+#         sys.version_info.minor,
+#         'win-amd64' if os.name == 'nt' else 'linux-x86_64'))[0])
+# except IndexError:
+#     pass
 
 import carla
 import random
@@ -158,7 +158,7 @@ def main():
         rot = carla.Rotation(pitch=0.0, yaw=0.0, roll=0.0)
         start_pose = carla.Transform(loc, rot)
         
-        # start_pose = random.choice(m.get_spawn_points())
+        start_pose = random.choice(m.get_spawn_points())
         waypoint = m.get_waypoint(start_pose.location)
 
         blueprint_library = world.get_blueprint_library()
